@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#E3E3E3" >
+
+    <TextView
+        android:id="@+id/text_upload_car_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:gravity="center_horizontal"
+        android:text="Upload car image"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_upload_car_image"
+        android:background="@color/white"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/button_custom_dialog_takePhoto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:text="Take Photo"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/button_custom_dialog_existingPhoto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:text="Choose Existing Photo"
+            android:textSize="20sp" />
+
+         <Button
+            android:id="@+id/button_custom_dialog_remove"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="20dp"
+            android:padding="10dp"
+            android:text="Remove Image"
+            android:textSize="20sp" />
+         
+        <Button
+            android:id="@+id/button_custom_dialog_close"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="20dp"
+            android:padding="10dp"
+            android:text="Close"
+            android:textSize="20sp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:padding="5dp"
+            android:text="Close"
+            android:textSize="12sp"
+            android:visibility="invisible" />
+    </LinearLayout>
+
+</RelativeLayout>

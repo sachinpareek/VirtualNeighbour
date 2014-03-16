@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/header_img"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_alignParentTop="true"
+    android:layout_centerHorizontal="true"
+    android:background="@color/header_color"
+    android:gravity="center_vertical"
+    android:orientation="horizontal" >
+
+    <ImageView
+        android:id="@+id/imageView_header_left_menu"
+        android:layout_width="@dimen/header_left_menu_width"
+        android:layout_height="@dimen/header_left_menu_height"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/header_left_menu_right_margin"
+        android:background="@drawable/header_menu_button_background"
+        android:contentDescription="@string/img_menu"
+        android:padding="@dimen/header_left_menu_padding"
+        android:src="@drawable/slide_holder_icon" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:background="@drawable/header_center_buttons_background"
+            android:id="@+id/imageView_header_post"
+            android:layout_width="@dimen/header_center_icons_width"
+            android:layout_height="@dimen/header_center_icons_height"
+            android:contentDescription="@string/img_menu"
+            android:padding="@dimen/header_center_icons_padding"
+            android:src="@drawable/ic_launcher" />
+
+        <ImageView
+            android:id="@+id/imageView_header_wall"
+            android:layout_width="@dimen/header_center_icons_width"
+            android:layout_height="@dimen/header_center_icons_height"
+            android:contentDescription="@string/img_menu"
+            android:padding="@dimen/header_center_icons_padding"
+            android:src="@drawable/ic_launcher" />
+
+        <ImageView
+            android:id="@+id/imageView_header_take_a_picture"
+            android:layout_width="@dimen/header_center_icons_width"
+            android:layout_height="@dimen/header_center_icons_height"
+            android:contentDescription="@string/img_menu"
+            android:padding="@dimen/header_center_icons_padding"
+            android:src="@drawable/ic_launcher" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView_header_right_menu"
+        android:layout_width="@dimen/header_right_menu_width"
+        android:layout_height="@dimen/header_right_menu_height"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/header_left_menu_right_margin"
+        android:background="@drawable/header_menu_button_background"
+        android:contentDescription="@string/img_menu"
+        android:padding="@dimen/header_left_menu_padding"
+        android:src="@drawable/slide_holder_icon" />
+
+</RelativeLayout>

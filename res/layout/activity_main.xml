@@ -1,0 +1,31 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/launching_page_background"
+    android:gravity="bottom"
+    android:orientation="horizontal" >
+
+    <Button
+        android:id="@+id/button_activity_main_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/main_activity_button_margin_bottom"
+        android:layout_marginLeft="@dimen/main_layout_right_left_margin"
+        android:layout_marginRight="2dp"
+        android:layout_weight="1"
+        android:background="@drawable/white_button"
+        android:text="@string/loginText" />
+
+    <Button
+        android:id="@+id/button_activity_main_register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/main_activity_button_margin_bottom"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="@dimen/main_layout_right_left_margin"
+        android:layout_weight="1"
+        android:background="@drawable/white_button"
+        android:text="@string/registerText" />
+
+</LinearLayout>

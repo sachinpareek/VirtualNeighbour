@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.mvn.virtualneighbor.ui"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="18" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
+    <application
+        android:name="com.mvn.virtualneighbor.application.MyVirtualNeighbor"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.mvn.virtualneighbor.ui.SplashScreen"
+            android:label="@string/title_activity_splash_screen" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.mvn.virtualneighbor.ui.LoginScreen"
+            android:label="@string/title_activity_login_screen" >
+        </activity>
+        <activity
+            android:name="com.mvn.virtualneighbor.ui.RegistrationScreen"
+            android:label="@string/title_activity_registration_screen" >
+        </activity>
+        <activity
+            android:name="com.mvn.virtualneighbor.ui.HomeScreen"
+            android:label="@string/title_activity_home_screen" >
+            
+        </activity>
+        <activity
+            android:name="com.mvn.virtualneighbor.ui.LaunchingScreen"
+            android:label="@string/title_activity_launching_screen" >
+        </activity>
+        <activity
+            android:name="com.mvn.virtualneighbor.ui.NeighborhoodTypeSelectionScreen"
+            android:label="@string/title_activity_neighborhood_type_selection_screen" >
+        </activity>
+        <activity
+            android:name="com.mvn.virtualneighbor.ui.NeighborhoodWallScreen"
+            android:label="@string/title_activity_neighborhood_wall_screen" >
+        </activity>
+        <activity
+            android:name="com.mvn.virtualneighbor.ui.NeighborsNerbyScreen"
+            android:label="@string/title_activity_neighbors_nerby_screen" >
+        </activity>
+        <activity
+            android:name="com.mvn.virtualneighbor.ui.ProfileScreen"
+            android:label="@string/title_activity_profile_screen" >
+        </activity>
+        <activity
+            android:name="com.mvn.virtualneighbor.ui.ResharePostScreen"
+            android:label="@string/title_activity_reshare_post_screen" >
+        </activity>
+        <activity
+            android:name="com.mvn.virtualneighbor.ui.ShareExpScreen"
+            android:label="@string/title_activity_share_exp_screen" >
+        </activity>
+        <activity
+            android:name="com.mvn.virtualneighbor.ui.SharePostScreen"
+            android:label="@string/title_activity_share_post_screen" >
+        </activity>
+        <activity android:name="com.mvn.virtualneighbor.ui.MainActivity"></activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:slidemenu="http://schemas.android.com/apk/res-auto"
+    android:layout_width="@dimen/menu_panels_width"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="@dimen/main_layout_right_left_margin"
+    android:layout_marginRight="@dimen/main_layout_right_left_margin"
+    slidemenu:layout_role="secondaryMenu"
+    android:background="@color/right_panel_background"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:contentDescription="@string/dash_gap"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dash_gap_width"
+        android:layout_marginTop="@dimen/margin_from_upperLayout"
+        android:background="@color/editTextGapColor" />
+    
+    
+    <Button
+        android:id="@+id/button_slide_right_panel_how_to_become_locals_popular"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_from_header"
+        android:background="@drawable/white_button_with_shade"
+        android:text="@string/locals_popular"
+        android:textSize="@dimen/leftPanel_text_size" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_from_upperLayout"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/button_slide_right_panel_share_exp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/rightPanel_share_exp_and_meet_locals_button_gap_half"
+            android:layout_weight="1"
+            android:background="@drawable/white_button_with_shade"
+            android:text="@string/share_exp"
+            android:textSize="@dimen/leftPanel_text_size" />
+
+        <Button
+            android:id="@+id/button_slide_right_panel_meet_locals"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/rightPanel_share_exp_and_meet_locals_button_gap_half"
+            android:layout_weight="1"
+            android:background="@drawable/white_button_with_shade"
+            android:text="@string/meet_locals"
+            android:textSize="@dimen/leftPanel_text_size" />
+    </LinearLayout>
+
+    <ImageView
+        android:contentDescription="@string/dash_gap"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dash_gap_width"
+        android:layout_marginTop="@dimen/margin_from_upperLayout"
+        android:background="@color/editTextGapColor" />
+
+    <Button
+        android:id="@+id/button_slide_right_panel_neighbor_nearby"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_from_upperLayout"
+        android:background="@drawable/white_button_with_shade"
+        android:drawableRight="@drawable/back_icon"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="@dimen/right_panel_nearyBy_button_margin_rigt_left"
+        android:paddingRight="@dimen/right_panel_nearyBy_button_margin_rigt_left"
+        android:text="@string/neighbor_nearby"
+        android:textSize="@dimen/leftPanel_text_size" />
+
+</LinearLayout>

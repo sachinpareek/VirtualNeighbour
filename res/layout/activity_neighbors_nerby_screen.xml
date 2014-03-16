@@ -1,0 +1,51 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:slidemenu="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    slidemenu:layout_role="content"
+    android:background="@drawable/background"
+    android:orientation="vertical" >
+
+    <include layout="@layout/header" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/follow_unfollow_text_height"
+        android:background="@color/follow_unfollow_text_background"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/main_layout_right_left_margin"
+        android:text="@string/follow_unfollow"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_from_upperLayout"
+        android:orientation="horizontal" >
+
+        <SeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:visibility="invisible" />
+
+        <SeekBar
+            android:id="@+id/seekBar_activity_neighbors_nearby_screen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5" />
+
+        <SeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:visibility="invisible" />
+    </LinearLayout>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+    </ListView>
+
+</LinearLayout>

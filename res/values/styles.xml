@@ -1,0 +1,67 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="spinnerItemStyle" parent="android:Widget.TextView.SpinnerItem">
+        <item name="android:background">@drawable/social_network_login_background_bottom_right</item>
+        <item name="android:drawableRight">@drawable/back_icon</item>
+    </style>
+
+    <attr name="slideMenuStyle" format="reference" />
+
+    <declare-styleable name="SlideMenu_Layout">
+        <attr name="layout_role" format="enum">
+            <enum name="content" value="0" />
+            <enum name="primaryMenu" value="1" />
+            <enum name="secondaryMenu" value="2" />
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="SlideMenu">
+        <attr name="primaryShadowWidth" format="dimension" />
+        <attr name="secondaryShadowWidth" format="dimension" />
+        <attr name="primaryShadowDrawable" format="reference" />
+        <attr name="secondaryShadowDrawable" format="reference" />
+        <attr name="edgeSlide" format="boolean" />
+        <attr name="edgeSlideWidth" format="dimension" />
+        <attr name="slideDirection" format="flags">
+            <flag name="left" value="1" />
+            <flag name="right" value="2" />
+        </attr>
+        <attr name="interpolator" format="reference" />
+    </declare-styleable>
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+    
+    
+     <style name="GenericProgressBackground" parent="android:Theme">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="GenericProgressIndicator" parent="@android:style/Widget.ProgressBar.Large">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:indeterminate">true</item>
+    </style>
+
+    <style name="GenericProgressIndicatorSmall" parent="@android:style/Widget.ProgressBar.Small">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:indeterminate">true</item>
+    </style>
+
+</resources>

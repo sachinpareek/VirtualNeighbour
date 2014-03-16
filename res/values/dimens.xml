@@ -1,0 +1,50 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="menu_panels_width">300dip</dimen>
+    <dimen name="right_panel_nearyBy_button_margin_rigt_left">10dp</dimen>
+    <dimen name="dash_gap_width">2dp</dimen>
+    <dimen name="rightPanel_share_exp_and_meet_locals_button_gap_half">3dp</dimen>
+    <dimen name="leftPanel_text_size">14sp</dimen>
+    <dimen name="leftPanel_margin_top_from_settings_icon">5dp</dimen>
+    <dimen name="leftPanel_margin_from_profile_pic">10dp</dimen>
+    <dimen name="leftPanelButtonPaddingLeft">15dp</dimen>
+    <dimen name="textView_adapter_neighbor_nearby_name_margin_left">10dp</dimen>
+    <dimen name="follow_button_height">20dp</dimen>
+    <dimen name="follow_button_text_size">12sp</dimen>
+    <dimen name="follow_unfollow_text_height">30dp</dimen>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+	<dimen name="main_layout_right_left_margin">10dp</dimen>
+	<dimen name="margin_from_facebook_icon">10dp</dimen>
+	<dimen name="icon_padding">5dp</dimen>
+	<dimen name="editText_email_padding_left">20dp</dimen>
+	<dimen name="editText_profile_page_padding_left">10dp</dimen>
+	<dimen name="editText_email_padding_top_bottom">10dp</dimen>
+	<dimen name="margin_from_header">15dp</dimen>
+	<dimen name="margin_from_upperLayout">10dp</dimen>
+	<dimen name="editTextGapSize">1dp</dimen>
+	<dimen name="social_networks_logo_dimens_width">50dp</dimen>
+	<dimen name="social_networks_logo_dimens_height">50dp</dimen>
+	<dimen name="social_networks_next_dimens_width">50dp</dimen>
+	<dimen name="social_networks_next_dimens_height">50dp</dimen>
+	<dimen name="social_networks_text_size">15sp</dimen>
+	<dimen name="rotate_image_text_size">12sp</dimen>
+	<dimen name="profile_page_users_will_come_text_size">12sp</dimen>
+	<dimen name="login_button_text_size">20sp</dimen>
+	<dimen name="button_text_padding">10sp</dimen>
+	<dimen name="forgot_text_text_size">18sp</dimen>
+	<dimen name="normal_text_text_size">12sp</dimen>
+	<dimen name="header_left_menu_width">50dp</dimen>
+	<dimen name="header_left_menu_height">40dp</dimen>
+	<dimen name="header_left_menu_padding">5dp</dimen>
+	<dimen name="header_left_menu_right_margin">10dp</dimen>
+	<dimen name="header_right_menu_width">50dp</dimen>
+	<dimen name="header_right_menu_height">40dp</dimen>
+	<dimen name="header_right_menu_padding">5dp</dimen>
+	<dimen name="header_right_menu_right_margin">10dp</dimen>
+	<dimen name="header_center_icons_width">50dp</dimen>
+	<dimen name="header_center_icons_height">35dp</dimen>
+	<dimen name="header_center_icons_padding">5dp</dimen>
+	<dimen name="main_activity_button_margin_bottom">10dp</dimen>
+</resources>

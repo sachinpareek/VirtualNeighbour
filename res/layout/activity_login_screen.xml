@@ -1,0 +1,217 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical" >
+
+    <include layout="@layout/login_register_header" />
+
+    <include
+        android:id="@+id/loadingview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical|center_horizontal"
+        layout="@layout/loadinglayout"
+        android:background="@android:color/transparent"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/main_layout_right_left_margin"
+        android:layout_marginRight="@dimen/main_layout_right_left_margin"
+        android:layout_marginTop="@dimen/margin_from_header"
+        android:background="@drawable/edit_text_background"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/fblayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/social_network_login_background_top" >
+
+            <ImageView
+                android:id="@+id/imageView_activity_login_screen_facebook"
+                android:layout_width="@dimen/social_networks_logo_dimens_width"
+                android:layout_height="@dimen/social_networks_logo_dimens_height"
+                android:layout_centerVertical="true"
+                android:contentDescription="@string/facebook_icon"
+                android:padding="@dimen/icon_padding"
+                android:src="@drawable/facebook_logo" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/margin_from_facebook_icon"
+                android:layout_toRightOf="@id/imageView_activity_login_screen_facebook"
+                android:text="@string/facebook_signin"
+                android:textSize="@dimen/social_networks_text_size" />
+
+            <ImageView
+                android:id="@+id/imageView_activity_login_screen_next"
+                android:layout_width="@dimen/social_networks_next_dimens_width"
+                android:layout_height="@dimen/social_networks_next_dimens_height"
+                android:layout_alignParentRight="true"
+                android:contentDescription="@string/next"
+                android:padding="@dimen/icon_padding"
+                android:src="@drawable/next" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/twitterlayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/editTextGapSize"
+            android:background="@color/white" >
+
+            <ImageView
+                android:id="@+id/imageView_activity_login_screen_twitter"
+                android:layout_width="@dimen/social_networks_logo_dimens_width"
+                android:layout_height="@dimen/social_networks_logo_dimens_height"
+                android:contentDescription="@string/facebook_icon"
+                android:padding="@dimen/icon_padding"
+                android:src="@drawable/twitter_logo" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/margin_from_facebook_icon"
+                android:layout_toRightOf="@id/imageView_activity_login_screen_twitter"
+                android:text="@string/twitter_signin"
+                android:textSize="@dimen/social_networks_text_size" />
+
+            <ImageView
+                android:layout_width="@dimen/social_networks_next_dimens_width"
+                android:layout_height="@dimen/social_networks_next_dimens_height"
+                android:layout_alignParentRight="true"
+                android:contentDescription="@string/next"
+                android:padding="@dimen/icon_padding"
+                android:src="@drawable/next" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/linkedinlayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/editTextGapSize"
+            android:background="@drawable/social_network_login_background_bottom" >
+
+            <ImageView
+                android:id="@+id/imageView_activity_login_screen_linkedin"
+                android:layout_width="@dimen/social_networks_logo_dimens_width"
+                android:layout_height="@dimen/social_networks_logo_dimens_height"
+                android:contentDescription="@string/facebook_icon"
+                android:padding="@dimen/icon_padding"
+                android:src="@drawable/linkedin_logo" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/margin_from_facebook_icon"
+                android:layout_toRightOf="@id/imageView_activity_login_screen_linkedin"
+                android:text="@string/linkedin_signin"
+                android:textSize="@dimen/social_networks_text_size" />
+
+            <ImageView
+                android:layout_width="@dimen/social_networks_next_dimens_width"
+                android:layout_height="@dimen/social_networks_next_dimens_height"
+                android:layout_alignParentRight="true"
+                android:contentDescription="@string/next"
+                android:padding="@dimen/icon_padding"
+                android:src="@drawable/next" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/main_layout_right_left_margin"
+        android:layout_marginRight="@dimen/main_layout_right_left_margin"
+        android:layout_marginTop="@dimen/margin_from_upperLayout"
+        android:background="@drawable/edit_text_background"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/social_network_login_background_top" >
+
+            <EditText
+                android:id="@+id/editText_activity_login_screen_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
+                android:paddingBottom="@dimen/editText_email_padding_top_bottom"
+                android:paddingLeft="@dimen/editText_email_padding_left"
+                android:paddingTop="@dimen/editText_email_padding_top_bottom"
+                android:textSize="@dimen/social_networks_text_size" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/editTextGapSize"
+            android:background="@drawable/social_network_login_background_bottom" >
+
+            <EditText
+                android:id="@+id/editText_activity_login_screen_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:paddingBottom="@dimen/editText_email_padding_top_bottom"
+                android:paddingLeft="@dimen/editText_email_padding_left"
+                android:paddingTop="@dimen/editText_email_padding_top_bottom"
+                android:textSize="@dimen/social_networks_text_size" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button_activity_login_screen_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/main_layout_right_left_margin"
+        android:layout_marginRight="@dimen/main_layout_right_left_margin"
+        android:layout_marginTop="@dimen/margin_from_header"
+        android:background="@drawable/green_button"
+        android:padding="@dimen/button_text_padding"
+        android:text="@string/loginText"
+        android:textColor="@color/white"
+        android:textSize="@dimen/login_button_text_size"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView_activity_login_screen_forgot_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/margin_from_header"
+        android:textSize="@dimen/forgot_text_text_size" />
+
+    <TextView
+        android:id="@+id/textView_activity_login_screen_help_center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/main_layout_right_left_margin"
+        android:layout_marginRight="@dimen/main_layout_right_left_margin"
+        android:layout_marginTop="@dimen/margin_from_header"
+        android:text="@string/help_center"
+        android:textColor="@color/help_center_color"
+        android:textSize="@dimen/forgot_text_text_size" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/main_layout_right_left_margin"
+        android:layout_marginRight="@dimen/main_layout_right_left_margin"
+        android:text="@string/copyright"
+        android:textSize="@dimen/normal_text_text_size" />
+
+</LinearLayout>

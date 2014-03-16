@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="follow_unfollow_text_background">#CCCCCC</color>
+    <color name="right_panel_background">#F9F9FB</color>
+    <color name="main_page_buttons_backround">#F7F7F7</color>
+    <color name="main_page_buttons_backround_corner">#EEEEEE</color>
+    <color name="header_button_pressed">#638F08</color>
+    <color name="editTextGapColor">#D0D0D0</color>
+    <color name="background_color_start">#F0F2F1</color>
+    <color name="background_color_center">#EBEBEB</color>
+    <color name="login_button_center_color">#33AF59</color>
+    <color name="login_button_border_color">#2E8C4D</color>
+    <color name="help_center_color">#2389B9</color>
+    <color name="lightWight">#F8F8F8</color>
+    <color name="white">#FFFFFF</color>
+	<color name="header_color">#72A000</color>
+    <drawable name="focused">#ff5500</drawable>
+    <drawable name="selected">#FF00FF</drawable>
+	<color name="list_clicked">#C8C8C8</color>
+    <color name="slide_holder_border">#505357</color>
+    <color name="black">#000000</color>
+    <color name="light_black">#3e4146</color>
+    <color name="red">#FF0000</color>
+    <color name="green">#458B00</color>
+    <color name="brown">#A52A2A</color>
+    <color name="gray">#6D7B8D</color>
+    <color name="blue">#0000FF</color>
+    <color name="drk_green">#7FFF00</color>
+    <color name="light_green">#E9F3D0</color>
+    <color name="sky_blue">#478bd0</color>
+    <color name="blue_feature">#3AB9D9</color>
+    <color name="list_first_item_background">#7086B404</color>
+    <color name="specheader"> #cbcaca </color>
+    <color name="suppliercolor"> #e2f5fc </color>
+    <color name="suppliercolorsec"> #f3fcff    </color>
+    <color name="edittextboundary"> #E66C2C    </color>
+    <color name="backgroundcolor"> #F1F3E6    </color>
+    <color name="couponbuttoncolor">#95C01B</color>
+    <color name="shadowcolor">#E0E0E0</color>
+    <color name="filter_popup">#ededf3</color>
+    <color name="lightblue">#005471</color>
+    <color name="lightgray">#858585</color>
+    <color name="lightblack">#666666</color>
+    <color name="orange">#E56717</color>
+    <color name="transparent">#00000000</color>
+    <color name="background_app">#dedede</color>
+    <color name="bring_to_top_background_color1">#65AFD2</color>
+    <color name="bring_to_top_background_color2">#67AFD7</color>
+    <color name="edit_background_color1">#F0C63D</color>
+    <color name="edit_background_color2">#F4C63F</color>
+    <color name="premium_background_color2">#F07F43</color>
+    <color name="premium_background_color1">#EE7E41</color>
+    
+    <color name="background_list_back">#e3e3e3</color>
+    <color name="background_list_front">#ffffff</color>
+    <color name="text_title">#444444</color>
+    <color name="text_description">#7e7e7e</color>
+    <color name="line">#ffbcbcbc</color>
+    <color name="background_new_tag">#ff0000</color>
+    <color name="text_new_tag">#ffffff</color>
+
+</resources>
