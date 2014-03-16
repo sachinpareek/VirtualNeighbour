@@ -257,7 +257,7 @@ public class RegistrationScreen extends Activity implements ImportantMethods,
 					.toString().trim());
 			
 			jarr.put(jobj);
-			jobj1.put("json_data", jarr);
+			jobj1.put("json_data", jarr); 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
