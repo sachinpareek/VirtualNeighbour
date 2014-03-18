@@ -4,6 +4,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLDecoder;
 
+import com.mvn.virtualneighbor.util.UtilConstants;
+
 import oauth.signpost.OAuthProvider;
 import oauth.signpost.basic.DefaultOAuthProvider;
 import oauth.signpost.commonshttp.CommonsHttpOAuthConsumer;
@@ -26,8 +28,8 @@ public class Twitter_Handler {
     private AccessToken mAccessToken;
     private final CommonsHttpOAuthConsumer mHttpOauthConsumer;
     private final OAuthProvider mHttpOauthprovider;
-    private final String mConsumerKey;
-    private final String mSecretKey;
+    private final String mConsumerKey = UtilConstants.CONSUMER_KEY;
+    private final String mSecretKey = UtilConstants.SECRET_KEY;
     private final ProgressDialog mProgressDlg;
     private TwDialogListener mListener;
     private final Activity context;
@@ -37,8 +39,7 @@ public class Twitter_Handler {
     private static final String TWITTER_AUTHORZE_URL = "https://api.twitter.com/oauth/authorize";
     private static final String TWITTER_REQUEST_URL = "https://api.twitter.com/oauth/request_token";
 
-    public Twitter_Handler(Activity context, String consumerKey,
-	    String secretKey) {
+    public Twitter_Handler(Activity context) {
 	this.context = context;
 
 	twitterObj = new TwitterFactory().getInstance();
@@ -47,8 +48,6 @@ public class Twitter_Handler {
 
 	mProgressDlg.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-	mConsumerKey = consumerKey;
-	mSecretKey = secretKey;
 
 	mHttpOauthConsumer = new CommonsHttpOAuthConsumer(mConsumerKey,
 		mSecretKey);

@@ -18,6 +18,9 @@ public class UtilConstants {
 	public static final String IMAGE_PATH = "/VirtualNeighbor_TempImages";
 	public static final String URL_LOGIN = "http://www.new.myvirtualneighbor.com/mvn/login.php";
 	public static final String FB_ID = "255562694625420";
+	public static final String CONSUMER_KEY = "nW1J3GhcFERTPJ7aTq4qw";
+	public static final String SECRET_KEY = "bIgA7DZ5opXuFcIWthSEUarjsYIGX2mMD31j02mqY";
 	public static final String FB_URL = "https://graph.facebook.com/me?fields=picture,id,name,gender,username&access_token=";
-
+	public static final String URL_SOCIAL_SITE_LOGIN_REGISTERATION_URL = "";
+	public static final String URL_SOCIAL_SITE_LOGIN_AUTHENTICATION_URL = "";
 }

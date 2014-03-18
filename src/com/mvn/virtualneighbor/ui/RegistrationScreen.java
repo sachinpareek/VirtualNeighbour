@@ -2,10 +2,10 @@ package com.mvn.virtualneighbor.ui;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Random;
 
+import org.codehaus.jackson.map.ObjectMapper;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -38,8 +38,11 @@ import android.widget.Toast;
 
 import com.mvn.virtualneighbor.interfaces.ImportantMethods;
 import com.mvn.virtualneighbor.util.ConnectionDetector;
+import com.mvn.virtualneighbor.util.LoginOnFcaebook;
 import com.mvn.virtualneighbor.util.UtilConstants;
 import com.mvn.virtualneighbor.webservices.JSONParser;
+import com.mvn.virtualneighbour.facebook.FacebookData;
+import com.mvn.virtualneighbour.twitter.Twitter_Login;
 
 public class RegistrationScreen extends Activity implements ImportantMethods,
 		OnClickListener {
@@ -66,6 +69,11 @@ public class RegistrationScreen extends Activity implements ImportantMethods,
 	private Dialog dialog;
 	private Bitmap photo;
 	protected boolean isImageSet;
+	private RelativeLayout fbLayout;
+	private RelativeLayout twitterLayout;
+	private RelativeLayout linkedinLayout;
+	private FacebookData facebookWrapper;
+	private RegisterationFromSocialSite registerationUsingSocialTask;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +105,7 @@ public class RegistrationScreen extends Activity implements ImportantMethods,
 		// For Remove title bar from activity.
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		task = new WebTask();
+		registerationUsingSocialTask = new RegisterationFromSocialSite();
 		imagePaths = new ArrayList<String>();
 	}
 
@@ -117,12 +126,18 @@ public class RegistrationScreen extends Activity implements ImportantMethods,
 		// ((MyApplication) activity.getApplication()).getUtil()
 		// .setRotationAnimation(wheelLoading,activity);
 		loadingFrame.setVisibility(View.GONE);
+		fbLayout = (RelativeLayout) findViewById(R.id.fblayout);
+		twitterLayout = (RelativeLayout) findViewById(R.id.twitterlayout);
+		linkedinLayout = (RelativeLayout) findViewById(R.id.linkedinlayout);
 	}
 
 	@Override
 	public void setListeners() {
 		buttonRegister.setOnClickListener(this);
 		imageViewUserProfilePic.setOnClickListener(this);
+		fbLayout.setOnClickListener(this);
+		twitterLayout.setOnClickListener(this);
+		linkedinLayout.setOnClickListener(this);
 	}
 
 	@Override
@@ -132,6 +147,21 @@ public class RegistrationScreen extends Activity implements ImportantMethods,
 				this, R.array.countryArray, R.layout.country_spinner);
 		adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
 		spinnerCountry.setAdapter(adapter);
+	}
+	
+	private void facebookLoginClicked(){
+		LoginOnFcaebook login = new LoginOnFcaebook();
+		login.loginOnFB(facebookWrapper,RegistrationScreen.this);
+		System.out.println("wrapper");
+	}
+	
+	private void twitterLoginClicked() {
+		Twitter_Login twit_login = new Twitter_Login(RegistrationScreen.this);
+		twit_login.loginToTwitter();
+	}
+
+	private void linkedinLoginClicked() {
+
 	}
 
 	@Override
@@ -143,7 +173,15 @@ public class RegistrationScreen extends Activity implements ImportantMethods,
 		case R.id.imageView_activity_registration_screen_user_image:
 			profilePicButtonClickEvent();
 			break;
-
+		case R.id.fblayout:
+			facebookLoginClicked();
+			break;
+		case R.id.twitterlayout:
+			twitterLoginClicked();
+			break;
+		case R.id.linkedinlayout:
+			linkedinLoginClicked();
+			break;
 		default:
 			break;
 		}
@@ -235,6 +273,65 @@ public class RegistrationScreen extends Activity implements ImportantMethods,
 			 * Toast.makeText(activity, response, Toast.LENGTH_SHORT).show(); }
 			 */
 		}
+	}
+	
+	@SuppressLint("NewApi")
+	private void executeRegisterationFromSocialSiteTask() {
+		if (registerationUsingSocialTask.getStatus() == AsyncTask.Status.FINISHED) {
+			registerationUsingSocialTask = new RegisterationFromSocialSite();
+		}
+		if (registerationUsingSocialTask.getStatus() != AsyncTask.Status.RUNNING) {
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+				registerationUsingSocialTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+			} else {
+				registerationUsingSocialTask.execute();
+			}
+		}
+	}
+	
+	private class RegisterationFromSocialSite extends AsyncTask<Void, Void, Void> {
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			loadingFrame.setVisibility(View.VISIBLE);
+		}
+
+		@Override
+		protected Void doInBackground(Void... params) {
+			verifyFromSocialSite();
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
+			super.onPostExecute(result);
+			loadingFrame.setVisibility(View.GONE);
+
+		}
+	}
+	
+	private void verifyFromSocialSite(){
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			String response = JSONParser.sendData(getLoginVerifyJsonData(), UtilConstants.URL_SOCIAL_SITE_LOGIN_AUTHENTICATION_URL);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private JSONObject getLoginVerifyJsonData() {
+		JSONObject jobj = new JSONObject();
+
+		try {
+			if(facebookWrapper != null){
+				
+			}
+			jobj.put(UtilConstants.LOGIN_TYPE, "email");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return jobj;
 	}
 
 	private JSONObject getUplaodedJsonData() {

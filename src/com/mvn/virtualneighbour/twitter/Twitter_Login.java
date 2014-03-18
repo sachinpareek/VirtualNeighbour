@@ -1,46 +1,38 @@
 package com.mvn.virtualneighbour.twitter;
 
-import java.io.File;
-
-import twitter4j.StatusUpdate;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
+import twitter4j.User;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
-import android.provider.SyncStateContract.Constants;
 import android.widget.Toast;
 
 import com.mvn.virtualneighbour.twitter.Twitter_Handler.TwDialogListener;
 
-public class Twitt_Sharing {
+public class Twitter_Login {
 
 	private final Twitter_Handler mTwitter;
 	private final Activity activity;
-	private String twitt_msg;
-	private File image_path;
 
-	public Twitt_Sharing(Activity act, String consumer_key,
-			String consumer_secret) {
+	public Twitter_Login(Activity act) {
 		this.activity = act;
-		mTwitter = new Twitter_Handler(activity, consumer_key, consumer_secret);
+		mTwitter = new Twitter_Handler(activity);
 	}
 
-	public void shareToTwitter(String msg, File Image_url) {
-		this.twitt_msg = msg;
-		this.image_path = Image_url;
+	public void loginToTwitter() {
 		mTwitter.setListener(mTwLoginDialogListener);
 
 		if (mTwitter.hasAccessToken()) {
-			showTwittDialog();
+			showLoginDialog();
 
 		} else {
 			mTwitter.authorize();
 		}
 	}
 
-	private void showTwittDialog() {
-		new PostTwittTask().execute(twitt_msg);
+	private void showLoginDialog() {
+		new LoginTask().execute();
 	}
 
 	private final TwDialogListener mTwLoginDialogListener = new TwDialogListener() {
@@ -53,7 +45,7 @@ public class Twitt_Sharing {
 
 		@Override
 		public void onComplete(String value) {
-			showTwittDialog();
+			showLoginDialog();
 		}
 	};
 
@@ -69,13 +61,13 @@ public class Twitt_Sharing {
 
 	}
 
-	class PostTwittTask extends AsyncTask<String, Void, String> {
+	class LoginTask extends AsyncTask<String, Void, String> {
 		ProgressDialog pDialog;
 
 		@Override
 		protected void onPreExecute() {
 			pDialog = new ProgressDialog(activity);
-			pDialog.setMessage("Posting Twitt...");
+			pDialog.setMessage("Getting data");
 			pDialog.setCancelable(false);
 			pDialog.show();
 			super.onPreExecute();
@@ -84,16 +76,13 @@ public class Twitt_Sharing {
 		@Override
 		protected String doInBackground(String... twitt) {
 			try {
-				Share_Pic_Text_Titter(image_path, twitt_msg,
-						mTwitter.twitterObj);
+				getLoginInformation(mTwitter.twitterObj);
 				return "success";
 
 			} catch (Exception e) {
-				if (e.getMessage().toString().contains("duplicate")) {
-					return "Posting Failed because of Duplicate message...";
-				}
+				
 				e.printStackTrace();
-				return "Posting Failed!!!";
+				return "Login Failed!!!";
 			}
 		}
 
@@ -101,7 +90,7 @@ public class Twitt_Sharing {
 		protected void onPostExecute(String result) {
 			pDialog.dismiss();
 			if (null != result && result.equals("success")) {
-				showToast("Posted Successfully");
+				showToast("Login Successfully");
 			} else {
 				showToast(result);
 			}
@@ -110,13 +99,10 @@ public class Twitt_Sharing {
 	}
 
 
-	public void Share_Pic_Text_Titter(File image_path, String message,
-			Twitter twitter) throws Exception {
+	public void getLoginInformation(Twitter twitter) throws Exception {
 		try {
-			StatusUpdate st = new StatusUpdate(message);
-		//	st.setMedia(Constants.image);
-			
-			twitter.updateStatus(st);
+			User user = twitter.showUser(twitter.getId());
+			System.out.println("user");
 		} catch (TwitterException e) {
 			Toast.makeText(activity,"Please Try Again",Toast.LENGTH_SHORT).show();
 			throw e;

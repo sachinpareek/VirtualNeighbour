@@ -28,6 +28,7 @@ import com.mvn.virtualneighbor.util.LoginOnFcaebook;
 import com.mvn.virtualneighbor.util.UtilConstants;
 import com.mvn.virtualneighbor.webservices.JSONParser;
 import com.mvn.virtualneighbour.facebook.FacebookData;
+import com.mvn.virtualneighbour.twitter.Twitter_Login;
 
 public class LoginScreen extends Activity implements ImportantMethods,
 		OnClickListener {
@@ -41,6 +42,7 @@ public class LoginScreen extends Activity implements ImportantMethods,
 	private Button mButtonLogin;
 
 	private Logintask loginTask;
+	private LoginFromSocialSite loginFromSocialSiteTask;
 	private Context mContext;
 	private SharedPreferences prefs;
 	private RelativeLayout loadingView;
@@ -72,6 +74,7 @@ public class LoginScreen extends Activity implements ImportantMethods,
 		mContext = getApplicationContext();
 		prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
 		loginTask = new Logintask();
+		loginFromSocialSiteTask = new LoginFromSocialSite();
 	}
 
 	@Override
@@ -106,10 +109,12 @@ public class LoginScreen extends Activity implements ImportantMethods,
 	private void facebookLoginClicked(){
 		LoginOnFcaebook login = new LoginOnFcaebook();
 		login.loginOnFB(facebookWrapper,LoginScreen.this);
+		System.out.println("wrapper");
 	}
 	
 	private void twitterLoginClicked() {
-
+		Twitter_Login twit_login = new Twitter_Login(LoginScreen.this);
+		twit_login.loginToTwitter();
 	}
 
 	private void linkedinLoginClicked() {
@@ -164,6 +169,20 @@ public class LoginScreen extends Activity implements ImportantMethods,
 			}
 		}
 	}
+	
+	@SuppressLint("NewApi")
+	private void executeLoginFromSocialTask() {
+		if (loginFromSocialSiteTask.getStatus() == AsyncTask.Status.FINISHED) {
+			loginFromSocialSiteTask = new LoginFromSocialSite();
+		}
+		if (loginFromSocialSiteTask.getStatus() != AsyncTask.Status.RUNNING) {
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+				loginFromSocialSiteTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+			} else {
+				loginFromSocialSiteTask.execute();
+			}
+		}
+	}
 
 	private class Logintask extends AsyncTask<Void, Void, Void> {
 
@@ -199,6 +218,28 @@ public class LoginScreen extends Activity implements ImportantMethods,
 			// }
 		}
 	}
+	
+	private class LoginFromSocialSite extends AsyncTask<Void, Void, Void> {
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			loadingView.setVisibility(View.VISIBLE);
+		}
+
+		@Override
+		protected Void doInBackground(Void... params) {
+			verifyFromSocialSite();
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
+			super.onPostExecute(result);
+			loadingView.setVisibility(View.GONE);
+
+		}
+	}
 
 	private boolean validate() {
 
@@ -214,6 +255,15 @@ public class LoginScreen extends Activity implements ImportantMethods,
 		return true;
 
 	}
+	
+	private void verifyFromSocialSite(){
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			String response = JSONParser.sendData(getLoginVerifyJsonData(), UtilConstants.URL_SOCIAL_SITE_LOGIN_AUTHENTICATION_URL);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	private void getDataFromServer() {
 		ObjectMapper mapper = new ObjectMapper();
@@ -226,10 +276,29 @@ public class LoginScreen extends Activity implements ImportantMethods,
 		}
 	}
 	
+	
 	private JSONObject getUplaodedJsonData() {
 		JSONObject jobj = new JSONObject();
 
 		try {
+			jobj.put(UtilConstants.EMAIL, mEditTextUserName.getText()
+					.toString().trim());
+			jobj.put(UtilConstants.PASSWORD, mEditTextPassword.getText()
+					.toString().trim());
+			jobj.put(UtilConstants.LOGIN_TYPE, "email");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return jobj;
+	}
+	
+	private JSONObject getLoginVerifyJsonData() {
+		JSONObject jobj = new JSONObject();
+
+		try {
+			if(facebookWrapper != null){
+				
+			}
 			jobj.put(UtilConstants.EMAIL, mEditTextUserName.getText()
 					.toString().trim());
 			jobj.put(UtilConstants.PASSWORD, mEditTextPassword.getText()
