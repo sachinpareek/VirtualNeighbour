@@ -13,11 +13,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class WallAdapter extends ArrayAdapter<String>{
+public class AllWallAdapter extends ArrayAdapter<String>{
 
 	private String[] data;
 	private Activity activity;
-	public WallAdapter(Activity context, String[] objects) {
+	public AllWallAdapter(Activity context, String[] objects) {
 		super(context, R.layout.wall_adapter, objects);
 		this.data = objects	;
 		this.activity = context ;
