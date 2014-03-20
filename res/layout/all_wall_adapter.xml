@@ -3,6 +3,156 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
+
     
+
+    <ImageView
+        android:id="@+id/imageView_adapter_wall_second"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:src="@drawable/ic_launcher" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="aaaaaaaaaladjalkdjlsakdjlaksdjaldjlakdjlsadjlkasjdlkadjladkjalksdjlkasdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+        
+            <ImageView 
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:src="@drawable/ic_launcher"
+                />
+            <TextView 
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/textView_all_wall_adapter_likes"
+                />
+        </LinearLayout>
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+             <ImageView 
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:src="@drawable/ic_launcher"
+                />
+            <TextView 
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/textView_all_wall_adapter_comments"
+                />
+        </LinearLayout>
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+            <TextView 
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/app_name"
+                />
+            <TextView 
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/textView_all_wall_adapter_comments"
+                />
+        </LinearLayout>
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+             <TextView 
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/app_name"
+                />
+            <TextView 
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/textView_all_wall_adapter_comments"
+                />
+        </LinearLayout>
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+             <TextView 
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/app_name"
+                />
+            <TextView 
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/textView_all_wall_adapter_comments"
+                />
+        </LinearLayout>
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+             <TextView 
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/app_name"
+                />
+            <TextView 
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/textView_all_wall_adapter_comments"
+                />
+        </LinearLayout>
+        
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/button_adapter_neighbor_nearby_follow"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/white_button_with_shade"
+            android:text="@string/follow"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/button_adapter_neighbor_nearby_follow"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/white_button_with_shade"
+            android:text="@string/follow"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/button_adapter_neighbor_nearby_follow"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/white_button_with_shade"
+            android:text="@string/follow"
+            android:textSize="12sp" />
+    </LinearLayout>
 
 </LinearLayout>
