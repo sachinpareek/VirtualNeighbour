@@ -26,6 +26,7 @@ import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.protocol.HTTP;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import android.util.Log;
@@ -135,6 +136,53 @@ public class JSONParser {
 	}
 
 	public static String sendData(JSONObject requestData, String url)
+			throws VirtualNeighborException {
+
+		InputStream is = null;
+		String data = "";
+		try {
+			DefaultHttpClient httpClient = new DefaultHttpClient();
+			HttpPost httpPost = new HttpPost(url);
+			/*
+			 * httpPost.addHeader("X_REST_USERNAME",
+			 * UtilityConstants.X_REST_USERNAME);
+			 * httpPost.addHeader("X_REST_PASSWORD",
+			 * UtilityConstants.X_REST_PASSWORD);
+			 */
+
+			if (null != requestData) {
+				StringEntity se = new StringEntity(requestData.toString());
+				se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE,
+						"application/json"));
+				httpPost.setEntity(se);
+			}
+			HttpResponse httpResponse = httpClient.execute(httpPost);
+			HttpEntity httpEntity = httpResponse.getEntity();
+			int statusCode = httpResponse.getStatusLine().getStatusCode();
+			if (statusCode == 204) {
+				data = null;
+			}
+			if (statusCode == 200) {
+				is = httpEntity.getContent();
+				BufferedReader reader = new BufferedReader(
+						new InputStreamReader(is, "iso-8859-1"));
+				StringBuilder sb = new StringBuilder();
+				String line = "";
+				while ((line = reader.readLine()) != null) {
+					sb.append(line);
+				}
+				data = sb.toString();
+
+				is.close();
+			}
+
+		} catch (Exception e) {
+			throw new VirtualNeighborException(e.getMessage());
+		}
+		return data;
+	}
+	
+	public static String sendJsonArray(JSONArray requestData, String url)
 			throws VirtualNeighborException {
 
 		InputStream is = null;

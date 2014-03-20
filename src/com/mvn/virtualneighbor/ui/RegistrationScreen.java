@@ -31,11 +31,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.mvn.virtualneighbor.application.MyVirtualNeighbor;
 import com.mvn.virtualneighbor.interfaces.ImportantMethods;
 import com.mvn.virtualneighbor.util.ConnectionDetector;
 import com.mvn.virtualneighbor.util.LoginOnFcaebook;
@@ -74,6 +76,7 @@ public class RegistrationScreen extends Activity implements ImportantMethods,
 	private RelativeLayout linkedinLayout;
 	private FacebookData facebookWrapper;
 	private RegisterationFromSocialSite registerationUsingSocialTask;
+	private LinearLayout mLayoutBack;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -120,7 +123,7 @@ public class RegistrationScreen extends Activity implements ImportantMethods,
 		editTextLastName = (EditText) findViewById(R.id.editText_activity_registration_screen_last_name);
 		editTextZipCode = (EditText) findViewById(R.id.editText_activity_registration_screen_zip_code);
 		imageViewUserProfilePic = (ImageView) findViewById(R.id.imageView_activity_registration_screen_user_image);
-
+		mLayoutBack = (LinearLayout) findViewById(R.id.linear_layout_img_bck);
 		loadingFrame = (RelativeLayout) findViewById(R.id.loadingview);
 		// wheelLoading = (ImageView) rootView.findViewById(R.id.wheel);
 		// ((MyApplication) activity.getApplication()).getUtil()
@@ -135,9 +138,10 @@ public class RegistrationScreen extends Activity implements ImportantMethods,
 	public void setListeners() {
 		buttonRegister.setOnClickListener(this);
 		imageViewUserProfilePic.setOnClickListener(this);
-		fbLayout.setOnClickListener(this);
-		twitterLayout.setOnClickListener(this);
-		linkedinLayout.setOnClickListener(this);
+		mLayoutBack.setOnClickListener(this);
+//		fbLayout.setOnClickListener(this);
+//		twitterLayout.setOnClickListener(this);
+//		linkedinLayout.setOnClickListener(this);
 	}
 
 	@Override
@@ -181,6 +185,9 @@ public class RegistrationScreen extends Activity implements ImportantMethods,
 			break;
 		case R.id.linkedinlayout:
 			linkedinLoginClicked();
+			break;
+		case R.id.linear_layout_img_bck:
+			((MyVirtualNeighbor)getApplication()).getUtil().finishActivity(this, false);
 			break;
 		default:
 			break;
@@ -334,7 +341,7 @@ public class RegistrationScreen extends Activity implements ImportantMethods,
 		return jobj;
 	}
 
-	private JSONObject getUplaodedJsonData() {
+	private JSONArray getUplaodedJsonData() {
 		JSONObject jobj = new JSONObject();
 		JSONObject jobj1 = new JSONObject();
 		JSONArray jarr = new JSONArray();
@@ -358,16 +365,15 @@ public class RegistrationScreen extends Activity implements ImportantMethods,
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return jobj;
+		return jarr;
 	}
 
 	private void uploadDataToServer() {
 		try {
 			response = "";
-			response = JSONParser.uploadMultipleImageOnServer(
-					imagePaths,
-					UtilConstants.URL_REGISTERATION,getUplaodedJsonData());
-
+			response = JSONParser.sendJsonArray(getUplaodedJsonData(),
+					UtilConstants.URL_REGISTERATION);
+			System.out.println("response is "+response);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -461,8 +467,9 @@ public class RegistrationScreen extends Activity implements ImportantMethods,
 			public void onClick(View v) {
 				isImageSet = false;
 				imageBitmap = null;
+				imageViewUserProfilePic.setImageBitmap(null);
 				imageViewUserProfilePic
-						.setBackgroundResource(R.drawable.ic_launcher);
+						.setBackgroundResource(R.drawable.next);
 				dialog.dismiss();
 			}
 		});

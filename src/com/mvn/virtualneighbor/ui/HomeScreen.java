@@ -48,7 +48,7 @@ public class HomeScreen extends BaseSlideMenuActivity implements
 	private Button mButtonShareExp;
 	private Button mButtonMeetLocals;
 	private Button mButtonNeighborsNearBy;
-	private WallScreen abc;
+	private AllWallScreen abc;
 	private Util mUtilObj;
 
 	@Override
@@ -153,10 +153,10 @@ public class HomeScreen extends BaseSlideMenuActivity implements
 
 		if (mStacks.get(tabId).size() == 0) {
 			if (tabId.equals(UtilConstants.TAB_ALL)) {
-				abc = new WallScreen();
+				abc = new AllWallScreen();
 				pushFragments(tabId, abc, true, true, false);
 			} else if (tabId.equals(UtilConstants.TAB_LOCALS)) {
-				pushFragments(tabId, new WallScreen(), true, true, false);
+				pushFragments(tabId, new AllWallScreen(), true, true, false);
 			}
 		} else {
 			pushFragments(tabId, mStacks.get(tabId).lastElement(), true, false,
