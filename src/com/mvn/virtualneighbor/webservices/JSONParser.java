@@ -1,17 +1,21 @@
 package com.mvn.virtualneighbor.webservices;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -23,8 +27,11 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.InputStreamBody;
+import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicHeader;
+import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -32,6 +39,7 @@ import org.json.JSONObject;
 import android.util.Log;
 
 import com.mvn.virtualneighbor.exception.VirtualNeighborException;
+import com.mvn.virtualneighbor.util.UtilConstants;
 
 public class JSONParser {
 
@@ -42,8 +50,8 @@ public class JSONParser {
 	static String param1 = "value1";
 	static String param2 = "value2";
 
-	public static String getJSONFromUrl(String url) throws VirtualNeighborException,
-			IOException {
+	public static String getJSONFromUrl(String url)
+			throws VirtualNeighborException, IOException {
 		Log.d("Test", "URL is :" + url);
 
 		URLConnection connection = new URL(url).openConnection();
@@ -181,8 +189,8 @@ public class JSONParser {
 		}
 		return data;
 	}
-	
-	public static String sendJsonArray(JSONArray requestData, String url)
+
+	public String sendJsonArray(JSONArray requestData, String url)
 			throws VirtualNeighborException {
 
 		InputStream is = null;
@@ -229,7 +237,7 @@ public class JSONParser {
 		return data;
 	}
 
-	public static String uploadImageOnServer(String path, String urladdress) {
+	public String uploadImageOnServer(String path, String urladdress) {
 
 		HttpURLConnection conn = null;
 		DataOutputStream dos = null;
@@ -278,9 +286,9 @@ public class JSONParser {
 			dos.writeBytes(twoHyphens + boundary + twoHyphens + lineEnd);
 			serverResponseCode = conn.getResponseCode();
 			if (serverResponseCode == 200) {
-				response = "success";
+				response = conn.getResponseMessage();
 			} else {
-				response = "fail";
+				response = conn.getResponseMessage();
 			}
 			fileInputStream.close();
 			dos.flush();
@@ -292,9 +300,9 @@ public class JSONParser {
 		return response;
 	}
 
-	public static String uploadMultipleImageOnServer(List<String> path,
-			String urladdress,JSONObject requestData) {
-		System.out.println("urladdress is "+urladdress);
+	/*public static String uploadMultipleImageOnServer(List<String> path,
+			String urladdress, JSONArray requestData) {
+		System.out.println("urladdress is " + urladdress);
 		HttpPost httppost = new HttpPost(urladdress);
 		MultipartEntity mpEntity = new MultipartEntity(
 				HttpMultipartMode.BROWSER_COMPATIBLE);
@@ -305,26 +313,20 @@ public class JSONParser {
 		try {
 			if (path.size() > 0)
 				mpEntity.addPart("image1", new FileBody(new File(path.get(0))));
-			if (path.size() > 1)
-				mpEntity.addPart("image2", new FileBody(new File(path.get(1))));
-			if (path.size() > 2)
-				mpEntity.addPart("image3", new FileBody(new File(path.get(2))));
-			if (path.size() > 3)
-				mpEntity.addPart("image4", new FileBody(new File(path.get(3))));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		try{
-		
-		if (null != requestData) {
-			StringEntity se = new StringEntity(requestData.toString());
-			se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE,
-					"application/json"));
-			httppost.setEntity(se);
-		}
 
-		DefaultHttpClient httpClient = new DefaultHttpClient();
+		try {
+
+			if (null != requestData) {
+				StringEntity se = new StringEntity(requestData.toString());
+				se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE,
+						"application/json"));
+				httppost.setEntity(se);
+			}
+
+			DefaultHttpClient httpClient = new DefaultHttpClient();
 			httppost.setEntity(mpEntity);
 			response = httpClient.execute(httppost);
 			HttpEntity httpEntity = response.getEntity();
@@ -345,11 +347,263 @@ public class JSONParser {
 
 				is.close();
 			}
-			System.out.println("response is "+data );
+			System.out.println("response is " + data);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return data;
+	}*/
+	
+	public String uploadMultipleImageOnServer(String urladdress,MultipartEntity mpEntity) {
+		HttpPost httppost = new HttpPost(urladdress);
+//		MultipartEntity mpEntity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
+		String data = null;
+		InputStream is;
+		HttpResponse response;
+		
+		
+		
+		
+		
+		/*if (null != requestData) {
+			StringEntity se;
+			try {
+				se = new StringEntity(requestData.toString());
+				se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE,
+						"application/json"));
+				httppost.setEntity(se);
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}*/
+		
+		try{
+
+//			mpEntity.addPart("data", new StringBody(nameValuePairs.toString()));
+			
+			
+			DefaultHttpClient httpClient = new DefaultHttpClient();
+			
+			httppost.setEntity(mpEntity);
+//			httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+			response = httpClient.execute(httppost);
+			HttpEntity httpEntity = response.getEntity();
+			int statusCode = response.getStatusLine().getStatusCode();
+			if (statusCode == 204) {
+				data = null;
+			}
+			if (statusCode == 200) {
+				is = httpEntity.getContent();
+				BufferedReader reader = new BufferedReader(
+						new InputStreamReader(is, "iso-8859-1"));
+				StringBuilder sb = new StringBuilder();
+				String line = "";
+				while ((line = reader.readLine()) != null) {
+					sb.append(line);
+				}
+				data = sb.toString();
+
+				is.close();
+			}
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return data;
 	}
+	
+	
+	public static String uploadFile(String filePath, String fileName,String url) {
+		InputStream is = null;
+		String res = "";
+		  InputStream inputStream;
+		  try {
+		    inputStream = new FileInputStream(new File(filePath));
+		    byte[] data;
+		    try {
+		      data = IOUtils.toByteArray(inputStream);
+		 
+		      HttpClient httpClient = new DefaultHttpClient();
+		      HttpPost httpPost = new HttpPost(url);
+		 
+		      InputStreamBody inputStreamBody = new InputStreamBody(new ByteArrayInputStream(data), fileName);
+		      MultipartEntity multipartEntity = new MultipartEntity();
+		      multipartEntity.addPart("file", inputStreamBody);
+		      httpPost.setEntity(multipartEntity);
+		 
+		      HttpResponse httpResponse = httpClient.execute(httpPost);
+		      HttpEntity httpEntity = httpResponse.getEntity();
+		      // Handle response back from script.
+		      if(httpResponse != null) {
+		    	  is = httpEntity.getContent();
+					BufferedReader reader = new BufferedReader(
+							new InputStreamReader(is, "iso-8859-1"));
+					StringBuilder sb = new StringBuilder();
+					String line = "";
+					while ((line = reader.readLine()) != null) {
+						sb.append(line);
+					}
+					res = sb.toString();
+
+					is.close();
+		      } else { // Error, no response.
+		 
+		      }
+		    } catch (IOException e) {
+		      e.printStackTrace();
+		    }
+		  } catch (FileNotFoundException e1) {
+		    e1.printStackTrace();
+		  }
+		  return res;
+		}
+
+	/*public static int uploadFile(String sourceFileUri, String upLoadServerUri) {
+
+		InputStream is;
+		
+		int serverResponseCode = 0;
+
+		String fileName = sourceFileUri;
+
+		HttpURLConnection conn = null;
+
+		DataOutputStream dos = null;
+
+		String lineEnd = "\r\n";
+
+		String twoHyphens = "--";
+
+		String boundary = "*****";
+
+		int bytesRead, bytesAvailable, bufferSize;
+
+		byte[] buffer;
+
+		int maxBufferSize = 1 * 1024 * 1024;
+
+		File sourceFile = new File(sourceFileUri);
+
+		if (!sourceFile.isFile()) {
+
+			return 0;
+
+		}
+
+		else
+
+		{
+
+			try {
+
+				// open a URL connection to the Servlet
+
+				FileInputStream fileInputStream = new FileInputStream(
+						sourceFile);
+
+				URL url = new URL(upLoadServerUri);
+
+				// Open a HTTP connection to the URL
+
+				conn = (HttpURLConnection) url.openConnection();
+
+				conn.setDoInput(true); // Allow Inputs
+
+				conn.setDoOutput(true); // Allow Outputs
+
+				conn.setUseCaches(false); // Don't use a Cached Copy
+
+				conn.setRequestMethod("POST");
+
+				conn.setRequestProperty("Connection", "Keep-Alive");
+
+				conn.setRequestProperty("ENCTYPE", "multipart/form-data");
+
+				conn.setRequestProperty("Content-Type",
+						"multipart/form-data;boundary=" + boundary);
+
+				conn.setRequestProperty("uploaded_file", fileName);
+
+				dos = new DataOutputStream(conn.getOutputStream());
+
+				dos.writeBytes(twoHyphens + boundary + lineEnd);
+
+				dos.writeBytes("Content-Disposition: form-data; name=\"uploaded_file\";filename=\""
+
+						+ fileName + "\"" + lineEnd);
+
+				dos.writeBytes(lineEnd);
+
+				// create a buffer of maximum size
+
+				bytesAvailable = fileInputStream.available();
+
+				bufferSize = Math.min(bytesAvailable, maxBufferSize);
+
+				buffer = new byte[bufferSize];
+
+				// read file and write it into form...
+
+				bytesRead = fileInputStream.read(buffer, 0, bufferSize);
+
+				while (bytesRead > 0) {
+
+					dos.write(buffer, 0, bufferSize);
+
+					bytesAvailable = fileInputStream.available();
+
+					bufferSize = Math.min(bytesAvailable, maxBufferSize);
+
+					bytesRead = fileInputStream.read(buffer, 0, bufferSize);
+
+				}
+
+				// send multipart form data necesssary after file data...
+
+				dos.writeBytes(lineEnd);
+
+				dos.writeBytes(twoHyphens + boundary + twoHyphens + lineEnd);
+
+				// Responses from the server (code and message)
+
+				serverResponseCode = conn.getResponseCode();
+
+				String serverResponseMessage = conn.getResponseMessage();
+
+				Log.i("uploadFile", "HTTP Response is : "
+
+				+ serverResponseMessage + ": " + serverResponseCode);
+
+				if (serverResponseCode == 200) {
+				}
+
+				// close the streams //
+
+				fileInputStream.close();
+
+				dos.flush();
+
+				dos.close();
+
+			} catch (MalformedURLException ex) {
+
+				ex.printStackTrace();
+
+				Log.e("Upload file to server", "error: " + ex.getMessage(), ex);
+
+			} catch (Exception e) {
+				Log.e("Upload file to server Exception",
+						"Exception : " + e.getMessage(), e);
+
+			}
+
+			return serverResponseCode;
+
+		} // End else block
+
+	}*/
+
 }

@@ -6,6 +6,7 @@ import org.json.JSONObject;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -22,8 +23,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mvn.virtualneighbor.interfaces.ImportantMethods;
-import com.mvn.virtualneighbor.util.ConnectionDetector;
-import com.mvn.virtualneighbor.util.DialogShow;
 import com.mvn.virtualneighbor.util.LoginOnFcaebook;
 import com.mvn.virtualneighbor.util.UtilConstants;
 import com.mvn.virtualneighbor.webservices.JSONParser;
@@ -146,14 +145,14 @@ public class LoginScreen extends Activity implements ImportantMethods,
 	private void loginButtonCLickEvent() {
 		userName = mEditTextUserName.getText().toString().trim();
 		password = mEditTextPassword.getText().toString().trim();
-		if (validate()) {
-			if (ConnectionDetector.isConnectingToInternet(mContext))
-				executeTask();
-			else
-				DialogShow.closeAppWithAlert(LoginScreen.this);
-			// Intent intent = new Intent(this, HomeScreen.class);
-			// startActivity(intent);
-		}
+//		if (validate()) {
+//			if (ConnectionDetector.isConnectingToInternet(mContext))
+//				executeTask();
+//			else
+//				DialogShow.closeAppWithAlert(LoginScreen.this);
+			 Intent intent = new Intent(this, HomeScreen.class);
+			 startActivity(intent);
+//		}
 	}
 
 	@SuppressLint("NewApi")

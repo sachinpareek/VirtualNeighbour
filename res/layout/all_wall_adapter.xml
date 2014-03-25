@@ -4,117 +4,100 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    
-
     <ImageView
-        android:id="@+id/imageView_adapter_wall_second"
+        android:id="@+id/imageView_all_wall_adapter_exp_images"
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        android:contentDescription="@string/list_images"
         android:src="@drawable/ic_launcher" />
 
     <TextView
-        android:visibility="gone"
+        android:id="@+id/textView_all_wall_adapter_exp_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="aaaaaaaaaladjalkdjlsakdjlaksdjaldjlakdjlsadjlkasjdlkadjladkjalksdjlkasdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" />
+        android:visibility="gone" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
+        <TextView
+            android:id="@+id/textView_all_wall_adapter_likes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_launcher" />
+
+        <TextView
+            android:id="@+id/textView_all_wall_adapter_comments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_launcher" />
+
         <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-        
-            <ImageView 
-                android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/all_wall_adapter_share_exp_location_margin_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
                 android:layout_width="wrap_content"
-                android:src="@drawable/ic_launcher"
-                />
-            <TextView 
                 android:layout_height="wrap_content"
+                android:text="@string/shared_exp_location_text" />
+
+            <TextView
+                android:id="@+id/textView_all_wall_adapter_shared_exp_location"
                 android:layout_width="wrap_content"
-                android:id="@+id/textView_all_wall_adapter_likes"
-                />
+                android:layout_height="wrap_content" />
         </LinearLayout>
+
         <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-             <ImageView 
-                android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
                 android:layout_width="wrap_content"
-                android:src="@drawable/ic_launcher"
-                />
-            <TextView 
                 android:layout_height="wrap_content"
+                android:text="@string/locals_within_300_yards_text" />
+
+            <TextView
+                android:id="@+id/textView_all_wall_adapter_discount_for_locals_within_300_yards"
                 android:layout_width="wrap_content"
-                android:id="@+id/textView_all_wall_adapter_comments"
-                />
+                android:layout_height="wrap_content" />
         </LinearLayout>
+
         <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-            <TextView 
-                android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
                 android:layout_width="wrap_content"
-                android:text="@string/app_name"
-                />
-            <TextView 
                 android:layout_height="wrap_content"
+                android:text="@string/discount_for_likes" />
+
+            <TextView
+                android:id="@+id/textView_all_wall_adapter_discount_on_likes"
                 android:layout_width="wrap_content"
-                android:id="@+id/textView_all_wall_adapter_comments"
-                />
+                android:layout_height="wrap_content" />
         </LinearLayout>
+
         <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-             <TextView 
-                android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
                 android:layout_width="wrap_content"
-                android:text="@string/app_name"
-                />
-            <TextView 
                 android:layout_height="wrap_content"
+                android:text="@string/discount_for_comments" />
+
+            <TextView
+                android:id="@+id/textView_all_wall_adapter_discount_on_comments"
                 android:layout_width="wrap_content"
-                android:id="@+id/textView_all_wall_adapter_comments"
-                />
+                android:layout_height="wrap_content" />
         </LinearLayout>
-        <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-             <TextView 
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text="@string/app_name"
-                />
-            <TextView 
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:id="@+id/textView_all_wall_adapter_comments"
-                />
-        </LinearLayout>
-        <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-             <TextView 
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text="@string/app_name"
-                />
-            <TextView 
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:id="@+id/textView_all_wall_adapter_comments"
-                />
-        </LinearLayout>
-        
     </LinearLayout>
 
     <LinearLayout

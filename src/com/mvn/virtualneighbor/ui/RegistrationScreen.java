@@ -2,9 +2,14 @@ package com.mvn.virtualneighbor.ui;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Random;
 
+import org.apache.http.entity.mime.HttpMultipartMode;
+import org.apache.http.entity.mime.MultipartEntity;
+import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.StringBody;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -43,6 +48,8 @@ import com.mvn.virtualneighbor.util.ConnectionDetector;
 import com.mvn.virtualneighbor.util.LoginOnFcaebook;
 import com.mvn.virtualneighbor.util.UtilConstants;
 import com.mvn.virtualneighbor.webservices.JSONParser;
+import com.mvn.virtualneighbor.webservices.JsonRegistrationStepOneData;
+import com.mvn.virtualneighbor.webservices.JsonRegistrationStepOneMap;
 import com.mvn.virtualneighbour.facebook.FacebookData;
 import com.mvn.virtualneighbour.twitter.Twitter_Login;
 
@@ -62,6 +69,7 @@ public class RegistrationScreen extends Activity implements ImportantMethods,
 	private Button buttonRegister;
 	private TextView textViewHeader;
 	private ImageView imageViewUserProfilePic;
+	private JsonRegistrationStepOneMap normalRegistrationWrapper;
 
 	private WebTask task;
 	private RelativeLayout loadingFrame;
@@ -139,9 +147,9 @@ public class RegistrationScreen extends Activity implements ImportantMethods,
 		buttonRegister.setOnClickListener(this);
 		imageViewUserProfilePic.setOnClickListener(this);
 		mLayoutBack.setOnClickListener(this);
-//		fbLayout.setOnClickListener(this);
-//		twitterLayout.setOnClickListener(this);
-//		linkedinLayout.setOnClickListener(this);
+		// fbLayout.setOnClickListener(this);
+		// twitterLayout.setOnClickListener(this);
+		// linkedinLayout.setOnClickListener(this);
 	}
 
 	@Override
@@ -152,13 +160,13 @@ public class RegistrationScreen extends Activity implements ImportantMethods,
 		adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
 		spinnerCountry.setAdapter(adapter);
 	}
-	
-	private void facebookLoginClicked(){
+
+	private void facebookLoginClicked() {
 		LoginOnFcaebook login = new LoginOnFcaebook();
-		login.loginOnFB(facebookWrapper,RegistrationScreen.this);
+		login.loginOnFB(facebookWrapper, RegistrationScreen.this);
 		System.out.println("wrapper");
 	}
-	
+
 	private void twitterLoginClicked() {
 		Twitter_Login twit_login = new Twitter_Login(RegistrationScreen.this);
 		twit_login.loginToTwitter();
@@ -187,7 +195,8 @@ public class RegistrationScreen extends Activity implements ImportantMethods,
 			linkedinLoginClicked();
 			break;
 		case R.id.linear_layout_img_bck:
-			((MyVirtualNeighbor)getApplication()).getUtil().finishActivity(this, false);
+			((MyVirtualNeighbor) getApplication()).getUtil().finishActivity(
+					this, false);
 			break;
 		default:
 			break;
@@ -270,18 +279,23 @@ public class RegistrationScreen extends Activity implements ImportantMethods,
 		protected void onPostExecute(Void result) {
 			super.onPostExecute(result);
 			loadingFrame.setVisibility(View.GONE);
-			/*
-			 * if (null != response && response.contains("success")) {
-			 * Toast.makeText(activity, "Uploaded Successfully!!!",
-			 * Toast.LENGTH_SHORT).show(); ((Screen3_TabSelect) activity)
-			 * .OpenInventoryFragmentFromSellFragmetn2(); for(int i =
-			 * 0;i<imagePaths.size();i++){ File file = new
-			 * File(imagePaths.get(i)); file.delete(); } } else {
-			 * Toast.makeText(activity, response, Toast.LENGTH_SHORT).show(); }
-			 */
+
+			if (null != normalRegistrationWrapper
+					&& normalRegistrationWrapper.getData().getMessage()
+							.equalsIgnoreCase("success")) {
+				Intent intent = new Intent(RegistrationScreen.this,
+						RegistrationActivity2.class);
+				((MyVirtualNeighbor) getApplication()).getUtil()
+						.startNewActivity(RegistrationScreen.this, intent,
+								false);
+			} else {
+				Toast.makeText(RegistrationScreen.this, response,
+						Toast.LENGTH_LONG).show();
+			}
+
 		}
 	}
-	
+
 	@SuppressLint("NewApi")
 	private void executeRegisterationFromSocialSiteTask() {
 		if (registerationUsingSocialTask.getStatus() == AsyncTask.Status.FINISHED) {
@@ -289,14 +303,16 @@ public class RegistrationScreen extends Activity implements ImportantMethods,
 		}
 		if (registerationUsingSocialTask.getStatus() != AsyncTask.Status.RUNNING) {
 			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-				registerationUsingSocialTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+				registerationUsingSocialTask
+						.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 			} else {
 				registerationUsingSocialTask.execute();
 			}
 		}
 	}
-	
-	private class RegisterationFromSocialSite extends AsyncTask<Void, Void, Void> {
+
+	private class RegisterationFromSocialSite extends
+			AsyncTask<Void, Void, Void> {
 
 		@Override
 		protected void onPreExecute() {
@@ -317,22 +333,23 @@ public class RegistrationScreen extends Activity implements ImportantMethods,
 
 		}
 	}
-	
-	private void verifyFromSocialSite(){
+
+	private void verifyFromSocialSite() {
 		ObjectMapper mapper = new ObjectMapper();
 		try {
-			String response = JSONParser.sendData(getLoginVerifyJsonData(), UtilConstants.URL_SOCIAL_SITE_LOGIN_AUTHENTICATION_URL);
+			String response = JSONParser.sendData(getLoginVerifyJsonData(),
+					UtilConstants.URL_SOCIAL_SITE_LOGIN_AUTHENTICATION_URL);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private JSONObject getLoginVerifyJsonData() {
 		JSONObject jobj = new JSONObject();
 
 		try {
-			if(facebookWrapper != null){
-				
+			if (facebookWrapper != null) {
+
 			}
 			jobj.put(UtilConstants.LOGIN_TYPE, "email");
 		} catch (Exception e) {
@@ -345,7 +362,7 @@ public class RegistrationScreen extends Activity implements ImportantMethods,
 		JSONObject jobj = new JSONObject();
 		JSONObject jobj1 = new JSONObject();
 		JSONArray jarr = new JSONArray();
-		
+
 		try {
 			jobj.put(UtilConstants.FIRST_NAME, editTextFirstName.getText()
 					.toString().trim());
@@ -354,14 +371,15 @@ public class RegistrationScreen extends Activity implements ImportantMethods,
 			jobj.put(UtilConstants.LOGIN_TYPE, "email");
 			jobj.put(UtilConstants.EMAIL, editTextEmail.getText().toString()
 					.trim());
-			jobj.put(UtilConstants.PASSWORD, editTextPassword.getText().toString().trim());
+			jobj.put(UtilConstants.PASSWORD, editTextPassword.getText()
+					.toString().trim());
 			jobj.put(UtilConstants.COUNTRY_CODE, spinnerCountry
 					.getSelectedItem().toString());
 			jobj.put(UtilConstants.ZIP_CODE, editTextZipCode.getText()
 					.toString().trim());
-			
+
 			jarr.put(jobj);
-			jobj1.put("json_data", jarr); 
+			jobj1.put("json_data", jarr);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -369,11 +387,57 @@ public class RegistrationScreen extends Activity implements ImportantMethods,
 	}
 
 	private void uploadDataToServer() {
+		ObjectMapper mapper = ((MyVirtualNeighbor) getApplication())
+				.getObjectMapper();
+		MultipartEntity mpEntity = new MultipartEntity(
+				HttpMultipartMode.BROWSER_COMPATIBLE);
 		try {
 			response = "";
-			response = JSONParser.sendJsonArray(getUplaodedJsonData(),
-					UtilConstants.URL_REGISTERATION);
-			System.out.println("response is "+response);
+
+			try {
+				if (imagePaths.size() > 0)
+					mpEntity.addPart("image1",
+							new FileBody(new File(imagePaths.get(0))));
+				if (imagePaths.size() > 1)
+					mpEntity.addPart("image2",
+							new FileBody(new File(imagePaths.get(1))));
+				if (imagePaths.size() > 2)
+					mpEntity.addPart("image3",
+							new FileBody(new File(imagePaths.get(2))));
+				if (imagePaths.size() > 3)
+					mpEntity.addPart("image4",
+							new FileBody(new File(imagePaths.get(3))));
+				mpEntity.addPart(UtilConstants.FIRST_NAME, new StringBody(
+						editTextFirstName.getText().toString()));
+				mpEntity.addPart(UtilConstants.LAST_NAME, new StringBody(
+						editTextLastName.getText().toString()));
+				mpEntity.addPart(UtilConstants.EMAIL, new StringBody(
+						editTextEmail.getText().toString()));
+				mpEntity.addPart(UtilConstants.PASSWORD, new StringBody(
+						editTextPassword.getText().toString()));
+				mpEntity.addPart(UtilConstants.COUNTRY_CODE, new StringBody(
+						spinnerCountry.getSelectedItem().toString()));
+				mpEntity.addPart(UtilConstants.ZIP_CODE, new StringBody(
+						editTextZipCode.getText().toString()));
+				mpEntity.addPart(UtilConstants.LOGIN_TYPE, new StringBody(
+						"email"));
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			response = ((MyVirtualNeighbor) getApplication()).getJsonParser()
+					.uploadMultipleImageOnServer(
+							UtilConstants.URL_REGISTERATION,mpEntity);
+			// response = ((MyVirtualNeighbor) getApplication()).getJsonParser()
+			// .sendJsonArray(getUplaodedJsonData(),
+			// UtilConstants.URL_REGISTERATION);
+			// JSONObject jsonObject = new JSONObject("MESSAGE");
+			// normalRegistrationWrapper = new JsonRegistrationStepOneData();
+			// normalRegistrationWrapper.setMESSAGE(jsonObject.toString());
+			 normalRegistrationWrapper = mapper.readValue(response,
+			 JsonRegistrationStepOneMap.class);
+			System.out.println("response is :" + response);
+			// System.out.println(normalRegistrationWrapper.getType().get(2));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -468,8 +532,7 @@ public class RegistrationScreen extends Activity implements ImportantMethods,
 				isImageSet = false;
 				imageBitmap = null;
 				imageViewUserProfilePic.setImageBitmap(null);
-				imageViewUserProfilePic
-						.setBackgroundResource(R.drawable.next);
+				imageViewUserProfilePic.setBackgroundResource(R.drawable.next);
 				dialog.dismiss();
 			}
 		});

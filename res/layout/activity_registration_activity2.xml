@@ -1,0 +1,90 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical" >
+
+    <include layout="@layout/login_register_header" />
+
+    <TextView
+        android:id="@+id/textView_activty_registration_screen2_userName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hi Abc" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Neighborhood Type" />
+
+    <Spinner
+        android:id="@+id/spinner_activity_registration_screen2_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/social_network_login_background_bottom"
+        android:paddingBottom="@dimen/editText_email_padding_top_bottom"
+        android:paddingLeft="@dimen/editText_email_padding_left"
+        android:paddingTop="@dimen/editText_email_padding_top_bottom" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enter your Neighborhood Name" />
+
+        <EditText
+            android:id="@+id/editText_activity_registration_screen2_neighbor_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/social_network_login_background_top_right"
+            android:hint="@string/fName"
+            android:inputType="text"
+            android:paddingBottom="@dimen/editText_email_padding_top_bottom"
+            android:paddingLeft="@dimen/editText_email_padding_left"
+            android:paddingTop="@dimen/editText_email_padding_top_bottom"
+            android:textSize="@dimen/social_networks_text_size" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Community code" />
+
+        <EditText
+            android:id="@+id/editText_activity_registration_screen2_community_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/social_network_login_background_top_right"
+            android:hint="@string/fName"
+            android:inputType="text"
+            android:paddingBottom="@dimen/editText_email_padding_top_bottom"
+            android:paddingLeft="@dimen/editText_email_padding_left"
+            android:paddingTop="@dimen/editText_email_padding_top_bottom"
+            android:textSize="@dimen/social_networks_text_size" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button_activity_registration_screen2_submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/main_layout_right_left_margin"
+        android:layout_marginRight="@dimen/main_layout_right_left_margin"
+        android:layout_marginTop="@dimen/margin_from_header"
+        android:background="@drawable/green_button"
+        android:padding="@dimen/button_text_padding"
+        android:text="@string/registerText"
+        android:textColor="@color/white"
+        android:textSize="@dimen/login_button_text_size"
+        android:textStyle="bold" />
+
+</LinearLayout>

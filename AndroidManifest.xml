@@ -7,9 +7,11 @@
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="18" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name="com.mvn.virtualneighbor.application.MyVirtualNeighbor"
@@ -37,7 +39,6 @@
         <activity
             android:name="com.mvn.virtualneighbor.ui.HomeScreen"
             android:label="@string/title_activity_home_screen" >
-            
         </activity>
         <activity
             android:name="com.mvn.virtualneighbor.ui.LaunchingScreen"
@@ -71,7 +72,12 @@
             android:name="com.mvn.virtualneighbor.ui.SharePostScreen"
             android:label="@string/title_activity_share_post_screen" >
         </activity>
-        <activity android:name="com.mvn.virtualneighbor.ui.MainActivity"></activity>
+        <activity android:name="com.mvn.virtualneighbor.ui.MainActivity" >
+        </activity>
+        <activity
+            android:name="com.mvn.virtualneighbor.ui.RegistrationActivity2"
+            android:label="@string/title_activity_registration_activity2" >
+        </activity>
     </application>
 
 </manifest>

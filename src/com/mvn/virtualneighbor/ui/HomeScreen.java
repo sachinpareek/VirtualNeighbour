@@ -150,6 +150,7 @@ public class HomeScreen extends BaseSlideMenuActivity implements
 	@Override
 	public void onTabChanged(String tabId) {
 		mCurrentTab = tabId;
+		System.out.println("sdhakdhaksldjakldhkajsdkasjdhas&************");
 
 		if (mStacks.get(tabId).size() == 0) {
 			if (tabId.equals(UtilConstants.TAB_ALL)) {
@@ -247,6 +248,7 @@ public class HomeScreen extends BaseSlideMenuActivity implements
 		mButtonMeetLocals.setOnClickListener(this);
 		mButtonShareExp.setOnClickListener(this);
 		mButtonNeighborsNearBy.setOnClickListener(this);
+		mTabHost.setOnTabChangedListener(this);
 	}
 
 	@Override
